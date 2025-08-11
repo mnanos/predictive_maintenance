@@ -16,15 +16,14 @@ python3 inference.py --Model_dir c:\ML1\ML_pipeline_code_multiple_classes_v1\Spe
 python3 inference_real_time.py --Model_dir c:\ML1\ML_pipeline_code_multiple_classes_v1\Spectrograms_tst\pretr_model
 
 
-0)
-για να κανουμε install όλα τα libraries που θέλουμε
+#0) in order to install all the libraries we want:
 pip install -r requirements.txt
 
 
-Για να κάνουμε ένα πείραμα εκτελούμε τις παρακάτω εντολές (με τη σειρά)
------------------------------------------------------------------------- 
+##To run an experiment, follow these commands in sequence:
+--------------------------------------------------------
 
-/home/user/ML_pipeline_code_multiple_classes_v0 αντι για  /home/mnanos/ML_pipeline_code_multiple_classes_v0/
+/home/user/ML_pipeline_code_multiple_classes_v0 instead of  /home/mnanos/ML_pipeline_code_multiple_classes_v0/
 
 #1)DATA
 -----------------------------------------------------------------------------------------
@@ -32,11 +31,11 @@ pip install -r requirements.txt
 TODO:
 	-
 
-ΕΝΤΟΛΗ:
+COMMAND:
 python3 Create_Dataset.py -dataset-params "{ Wav_folder : /home/mnanos/ML_pipeline_code_multiple_classes_v0/tst_dataset , Target_folder : /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst , Fs : 14700 , seq_dur : 5 , classes_lookup : { Moter_single : 0 , Motor_gran_no_chain : 1 , seatrak_all_elements : 2 , kinhsh_koble : 3 } , FE_params : { front_end_name : STFT_custom , a : 768 , M : 1024 , support : 1024 } , preproc : None } "
 
-ΕΠΕΞΗΓΗΣΗ ΠΑΡΑΜΕΤΡΩΝ:
-    Wav_folder-> (STR) 	Είναι το PATH του dir το οποίο πρέπει να έχει την ακόλουθη δομή τα αρχεία είναι με audacity:
+Parameter explaination:
+    Wav_folder-> (STR) 	This is the PATH of the directory, which must have the following structure; the files are from Audacity:
 
             Wav_folder   --+--   train --+-- ith_class_wav  --+-- όλα τα .wav αρχεία τα οποία θεωρείς ότι είναι στην ι-οστη κλάση
                            |                          
