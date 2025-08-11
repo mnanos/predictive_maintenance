@@ -1,5 +1,5 @@
 # predictive_maintenance
-Predictive Maintenance AI framework
+# Predictive Maintenance AI framework
 ## 1. greate DataSet from .wav files
 python3 Create_Dataset.py -dataset-params "{ Wav_folder : c:\ML1\ML_pipeline_code_multiple_classes_v1\tst_dataset , Target_folder : c:\ML1\ML_pipeline_code_multiple_classes_v1\Spectrograms_tst , Fs : 44100 , seq_dur : 5 , classes_lookup : { Moter_single : 0 , Motor_gran_no_chain : 1 , seatrak_all_elements : 2 , kinhsh_koble : 3 } , FE_params : { front_end_name : STFT_custom , a : 768 , M : 1024 , support : 1024 } , preproc : None } "
 
@@ -23,14 +23,10 @@ pip install -r requirements.txt
 ## To run an experiment, follow these commands in sequence:
 --------------------------------------------------------
 
-/home/user/ML_pipeline_code_multiple_classes_v0 instead of  /home/mnanos/ML_pipeline_code_multiple_classes_v0/
+/home/user/ML_pipeline_code_multiple_classes_v0/ instead of  /home/mnanos/ML_pipeline_code_multiple_classes_v0/
 
-### 1)DATA
+### 1) DATA, Create Dataset 
 -----------------------------------------------------------------------------------------
-
-TODO:
-	-
-
 COMMAND:
 python3 Create_Dataset.py -dataset-params "{ Wav_folder : /home/mnanos/ML_pipeline_code_multiple_classes_v0/tst_dataset , Target_folder : /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst , Fs : 14700 , seq_dur : 5 , classes_lookup : { Moter_single : 0 , Motor_gran_no_chain : 1 , seatrak_all_elements : 2 , kinhsh_koble : 3 } , FE_params : { front_end_name : STFT_custom , a : 768 , M : 1024 , support : 1024 } , preproc : None } "
 
@@ -80,15 +76,12 @@ Parameter explaination:
     						          
                                           
 
-### 2)TRAIN
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-TODO:
-	
-ΕΝΤΟΛΗ:
+### 2) TRAIN
+---------------------------------------------------------------------------------------------------------------------------------------
+COMMAND:
 python3 train.py --root /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst --nb_classes 4 --output /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst/pretr_model --epochs 10
 
-ΕΠΕΞΗΓΗΣΗ ΠΑΡΑΜΕΤΡΩΝ: 
+Parameter explaination: 
     root-> (STR)  Είναι το PATH του dir το οποίο περιέχει τα αρχεία : 
 		   Spec_seg_pair_list_train.pt,Spec_seg_pair_list_valid.pt,Dataset_Params_log.json
 		   και το οποίο δημιουργήθηκε με το προηγούμενο script (Create_Dataset.py). 
@@ -103,7 +96,7 @@ python3 train.py --root /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectr
              
     nb_classes-> Είναι το πλήθος των κλάσεων για τις οποίες θα εκπαιδευτεί το NN.
 
-Βασικές Υπερπαράμετροι (hyperparameters) εκπαίδευσης:
+Basic training hyperparameters:
 
     epochs-> (INT) Εποχές τις οποίες θα εκπαιδευτεί το Νευρωνικό δίκτυο 
 
@@ -118,16 +111,13 @@ python3 train.py --root /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectr
                 
     
 
-### 3)EVALUATION
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-TODO:
-	
-ΕΝΤΟΛΗ:
+### 3) EVALUATION
+--------------------------------------------------------------------------------------------------------------------------------------
+COMMAND:
 python3 evaluate.py --method-name TST --Model_dir /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst/pretr_model --root_TEST_dir /home/mnanos/ML_pipeline_code_multiple_classes_v0/tst_dataset --evaldir /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst/evaldir
 
 
-ΕΠΕΞΗΓΗΣΗ ΠΑΡΑΜΕΤΡΩΝ:
+Parameter explaination:
     method-name->(STR)   Είναι το όνομα της μεθόδου που κάνουμε evaluate π.χ. μπορεί να θές να 
 		          συγκρίνεις διάφορα FEs εισόδου ή διάφορες αρχιτεκτονικές δικτύων .
 		          Αυτό το όνομα θα φαίνεται στα Logs (μπορείς και να μην το θέσεις).
@@ -144,18 +134,13 @@ python3 evaluate.py --method-name TST --Model_dir /home/mnanos/ML_pipeline_code_
 			      scores.pickle-> Περιέχει τις μετρικές αξιολόγησης σε μια python3 μεταβλητή   
 
 
-### 4)INFERENCE
---------------------------------------------------------------------------------------------------------------------------------------------------------
-
-TODO:
-	-
-
-
-ΕΝΤΟΛΗ:
+### 4) INFERENCE
+---------------------------------------------------------------------------------------------------------------------------------------
+COMMANDS:
 python3 inference.py --Model_dir /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst/pretr_model --input-wav /home/mnanos/ML_pipeline_code_multiple_classes_v0/tst_dataset/test/kinhsh_koble/κίνηση-κομπλε-3.wav  
 
 
-ΕΠΕΞΗΓΗΣΗ ΠΑΡΑΜΕΤΡΩΝ:
+Parameter explaination:
     Model_dir->(STR)	 Είναι το path για το dir που περιέχει τα απαραίτητα αρχεία για το pretrained μοντέλο.
                 	(θα πρέπει να είναι το ίδιο με το argument output του train.py script)
 
@@ -167,19 +152,19 @@ python3 inference.py --Model_dir /home/mnanos/ML_pipeline_code_multiple_classes_
 python3 train.py --model /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst/pretr_model --checkpoint /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst/pretr_model /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst --nb_classes 4 --output /home/mnanos/ML_pipeline_code_multiple_classes_v0/Spectrograms_tst/pretr_model --epochs 10 
 
 
-*ΣΗΜΑΝΤΙΚΕΣ ΣΗΜΕΙΩΣΕΙΣ-ΣΧΟΛΙΑ: 
+** Key Notes and Remarks **: 
 
-	DATASET:
-		Το Dataset (WAVs) δημιουργήθηκκε με τη βοήθεια του λογισμικού Audacity. 
-		Ακολουθήθηκε η διαδικασία: 
-				Αρχικά να σημειωθεί ότι μια κλάση που το αντίστοιχο wav ήταν 22secs δεν την έλαβα υπόψιν για αυτό μείναμε με 4 κλάσεις. 
-				Για τις υπόλοιπες 4 κλάσεις κόψαμε τα WAVs που είχαμε για την κάθε μια ώστε να τα βάλουμε κατάλληλα στα 3 Folders (test,train,valid).
-				Διάρκειες των αντίστοιχων WAVs -> Train>Test>valid. 
-				
-				H παραπάνω διαδικασία μπορεί εύκολα:
-					1)Να επεκταθεί για περισσότερα του ενός WAV ανά κλάση.
-					2)Να επεκταθεί για περισσότερες κλάσεις.
+	* DATASET: *
+	The dataset (WAV files) was created with the help of Audacity software. The following procedure was followed: 
+First, it should be noted that one class, whose corresponding WAV file was 22 seconds long, was not taken into account. This is why we ended up with 4 classes.
 
+For the remaining 4 classes, we trimmed the WAV files we had for each one so that they could be appropriately placed into the 3 folders (test, train, valid).
+The durations of the corresponding WAV files follow the order: Train > Test > Valid.
+
+The above procedure can easily be:
+
+1. Extended to include more than one WAV file per class.
+2. Extended to include more classes.
 		    
 	ΝΕΥΡΩΝΙΚΟ ΔΙΚΤΥΟ:
 		Το δίκτυο προβλέπει για ένα block διάρκειας seq_dur=5sec σε ποια κλάση (από τις 4) ανήκει. Η έξοδος του δικτύου είναι ένα μητρώο διάστασης (nb_blocks,nb_classes) 		    
