@@ -32,6 +32,7 @@ python3 Create_Dataset.py -dataset-params "{ Wav_folder : /home/mnanos/ML_pipeli
 
 Parameter explaination:
     Wav_folder-> (STR) 	This is the PATH of the directory, which must have the following structure; the files are from Audacity:
+   
    Wav_folder
 	 ├── train
 	 │    └── ith_class_wav  └── all .wav files you consider to belong to the i-th class
