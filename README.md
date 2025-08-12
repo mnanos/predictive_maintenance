@@ -32,6 +32,7 @@ python3 Create_Dataset.py -dataset-params "{ Wav_folder : /home/mnanos/ML_pipeli
 
 Parameter explaination:
     Wav_folder-> (STR) 	This is the PATH of the directory, which must have the following structure; the files are from Audacity:
+
    
    Wav_folder
 	 ├── train
@@ -42,6 +43,7 @@ Parameter explaination:
 	 │
 	 └── test
 		  └── ith_class_wav  └── all .wav files you consider to belong to the i-th class
+
 Target_folder → (STR) The path to the directory (created if it does not already exist) where the following files will be saved:
 
 - Spec_seg_pair_list_train.pt → An iterable variable containing the training example pairs (In_spectr, label)
@@ -65,36 +67,7 @@ classes_lookup → (dictionary) A lookup table where:
 
 Important note: The key-value pair corresponding to the class with label = 0 must be written first in the classes_lookup dictionary! (Implementation requirement)                       
     
-    Target_folder-> (STR)	 Είναι το PATH του dir (το οποίο δημιουργείται αν δεν υπάρχει) και στο οποίο θα αποθηκευτούν τα ακόλουθα: 
-					    Spec_seg_pair_list_train.pt: η μεταβλητή (iterable) η οποία θα περιέχει τα παραδείγματα training ζεύγη (In_spectr,label)
-					    Spec_seg_pair_list_valid.pt: η μεταβλητή (iterable) η οποία θα περιέχει τα παραδείγματα validation ζεύγη (In_spectr,label)
-					    Dataset_Params_log.json: Log το οποίο περιέχει τις παραμέτρους του Dataset
-                    
-
-    Fs-> (ΙΝΤ) Συχνότητα δειγματοληψίας στην οποία γίνονται resample τα wavs     
-					(ΧΡΗΣΗ: σε περίπτωση που έχεις δει ότι οι κυματομορφές δεν 
-                    περιέχουν ενέργεια πάνω από μια συχνότητα μπορείς να κάνεις resampling σε αυτή για γρηγορότερο processing)
-
-    seq_dur-> (ΙΝΤ) 		Η διάρκεια της ακολουθίας (σε sec) των παραδειγμάτων εκπαίδευσης τα οποία τροφοδοτούμε στο δίκτυο. 
-					(ΧΡΗΣΗ: επειδή τα wavs που έχουμε είναι μεγάλης διάρκειας (π.χ. 30mins) 
-                    σε blocks διάρκειας seq-dur=5sec ώστε 1)να γίνεται γρηγορότερα το processing ,
-                                                          2)Να έχουμε περισσότερα παραδείγματα εκπαίδευσης ) 
-
-    FE_params-> (dictionary) 		Είναι οι παράμετροι του FE (front end ή αναπαράσταση εισόδου) με το οποίο θα τροφοδοτούμε το δίκτυο .     
-					Επιλέξαμε το FE να είναι spectrogram για να εκμαιταλευτούμε τα CNN νευρωνικά δίκτυα καθώς αυτά 
-					τα πάνε πολύ καλά με εικόνες και τα spectrograms είναι εικόνες.
-	   
-   
-    classes_lookup-> (dictionary) 	 Είναι ένα lookup table όπου : 
-    						key -> είναι το όνομα του dir μιας κλάσης (είναι string)
-    						value -> είναι το αντίστοιχο label (είναι int)
-    						
-    		    *Σημαντική Σημείωση: Θα πρέπει το key value pair που αντιστοιχεί 
-    		     στην κλάση με label=0 να γράφεται πρώτο στο classes_lookup dictionary!!!! 
-    		     (για λόγους υλοποίησης)
-
-
-
+    
 ### 2) TRAIN
 ---------------------------------------------------------------------------------------------------------------------------------------
 COMMAND:
