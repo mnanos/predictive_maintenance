@@ -35,6 +35,7 @@ Parameter explaination:
 
    
    Wav_folder
+   
 	 ├── train
 	 │    └── ith_class_wav  └── all .wav files you consider to belong to the i-th class
 	 │
